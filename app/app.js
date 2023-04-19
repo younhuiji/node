@@ -17,7 +17,7 @@ const server = app.listen(3000, () => {
 });
 
 const db = {
-    database: "thenb",
+    database: "thanb",
     connectionLimit: 10,
     host: "localhost",
     user: "root",
