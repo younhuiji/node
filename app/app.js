@@ -36,7 +36,7 @@ app.post('/api/logout', async(req, res) => {
     res.send('ok');
 });
 
-const sql = require('./sql.js');
+const sql = require('./src/modles/sql.js');
 
 // 로그인이 필요없는 경우
 app.post('/api/:alias', async(req, res) => {
