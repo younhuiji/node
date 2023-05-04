@@ -1,12 +1,12 @@
 const express = require("express");
 const router = express.Router();
+const controller = require('../controller/indexController');
 
-router.get("/", (req, res) => {
-    res.render("index");
-})
+// get
+router.get('/', controller.get.index);
 
-router.get("/login", (req, res) => {
-    res.render("login");
-})
+// post
+router.post('/login', controller.post.login);
+router.post('/signup', controller.post.signup);
 
 module.exports = router;
