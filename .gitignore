@@ -1,6 +1,5 @@
 #dependencies
 /app/node_modules
-node_modules/*
 
 # database
 /app/src/config/db.json
