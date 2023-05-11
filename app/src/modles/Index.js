@@ -33,7 +33,7 @@ module.exports = {
           };
       
             console.log('응답 데이터:', results);
-            return JSON.stringify(results);
+            return (results);
       
         } catch (error) {
             console.error(error);

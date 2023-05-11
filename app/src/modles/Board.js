@@ -84,24 +84,24 @@ module.exports = {
           );
 
         // 게시물 이미지 저장
-        const boardImagePaths = await Promise.all(
-            req.B_IMAGE.map((image) =>
-              saveImage(
-                {
-                  name: image.name,
-                  data: image.data,
-                  directory: boardDirPath,
-                }
-              )
-            )
-          );
+        // const boardImagePaths = await Promise.all(
+        //     req.B_IMAGE.map((image) =>
+        //       saveImage(
+        //         {
+        //           name: image.name,
+        //           data: image.data,
+        //           directory: boardDirPath,
+        //         }
+        //       )
+        //     )
+        //   );
 
         
         await new Promise((resolve, reject) => {
         connection.query(sql.sql_board_create, [
                 req.B_TITLE,
                 profileImagePath,
-                JSON.stringify(boardImagePaths),
+                // JSON.stringify(boardImagePaths),
                 req.B_CONTENT,
                 req.B_WRITER,
                 new Date(),
@@ -129,8 +129,8 @@ module.exports = {
         console.log('req boardId:', boardId);
       
         // 게시물 디렉토리 생성
-        const boardDirName = `board_${new Date().getTime()}`;
-        const boardDirPath = path.join('../src', 'public', 'images', 'board', boardDirName);
+        const boardDirName = `board_${uuidv4()}`;
+        const boardDirPath = path.join(__dirname,'..', 'public', 'images', 'board', boardDirName);
         fs.mkdirSync(boardDirPath);
 
         // 이전 이미지 디렉토리 삭제
@@ -159,21 +159,21 @@ module.exports = {
         });
       
         // 게시물 이미지 저장
-        const newBoardImagePaths = await Promise.all(
-        data.B_IMAGE.map((image) =>
-            saveImage({
-              name: image.name,
-              data: image.data,
-              directory: boardDirPath,
-            })
-          )
-        );
+        // const newBoardImagePaths = await Promise.all(
+        // data.B_IMAGE.map((image) =>
+        //     saveImage({
+        //       name: image.name,
+        //       data: image.data,
+        //       directory: boardDirPath,
+        //     })
+        //   )
+        // );
       
         await new Promise((resolve, reject) => {
           connection.query(sql.sql_board_update, [
             data.B_TITLE,
             profileImagePath,
-            JSON.stringify(newBoardImagePaths),
+            // JSON.stringify(newBoardImagePaths),
             data.B_CONTENT,
             new Date(),
             boardId,

@@ -26,8 +26,7 @@
          H_KAKAO_LINK, 
          H_NAVER_LINK, 
          H_RESERVATION_LINK, 
-         H_CONTENT, 
-         H_BOARD_IMAGE, 
+         H_CONTENT,  
          H_LUNCH_START_TIME, 
          H_LUNCH_END_TIME, 
          H_MON_START_TIME, 
@@ -48,7 +47,7 @@
          H_MODIFIED_DATE,
          H_WRITER)
      VALUES 
-        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+        (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
  
     const sql_hospital_update = 
     `UPDATE hospital SET 
@@ -67,7 +66,6 @@
         H_NAVER_LINK = ?,
         H_RESERVATION_LINK = ?,
         H_CONTENT = ?,
-        H_BOARD_IMAGE = ?,
         H_LUNCH_START_TIME = ?,
         H_LUNCH_END_TIME = ?,
         H_MON_START_TIME = ?,
@@ -93,7 +91,6 @@
      `UPDATE board SET 
         B_TITLE=?, 
         B_PROFILE_IMAGE=?, 
-        B_IMAGE=?, 
         B_CONTENT=?, 
         B_MODIFIED_DATE=?
      WHERE id=?`;
@@ -102,32 +99,29 @@
      `INSERT INTO board 
         (B_TITLE, 
         B_PROFILE_IMAGE, 
-        B_IMAGE, 
         B_CONTENT, 
         B_WRITER, 
         B_CREATED_DATE, 
         B_MODIFIED_DATE) 
      VALUES 
-        (?, ?, ?, ?, ?, ?, ?)`;
+        (?, ?, ?, ?, ?, ?)`;
 
      // event SQL
      const sql_event_create = 
      `INSERT INTO event 
         (E_TITLE, 
         E_PROFILE_IMAGE, 
-        E_IMAGE, 
         E_CONTENT, 
         E_WRITER, 
         E_CREATED_DATE, 
         E_MODIFIED_DATE)
      VALUES 
-        (?, ?, ?, ?, ?, ?, ?)`;
+        (?, ?, ?, ?, ?, ?)`;
 
      const sql_event_update = 
      `UPDATE event SET 
         E_TITLE = ?, 
         E_PROFILE_IMAGE = ?,
-        E_IMAGE = ?,
         E_CONTENT = ?,
         E_MODIFIED_DATE = ?
      WHERE ID = ?;`;
@@ -137,19 +131,17 @@
      `INSERT INTO inform 
         (I_TITLE,
         I_PROFILE_IMAGE, 
-        I_IMAGE, 
         I_CONTENT, 
         I_WRITER, 
         I_CREATED_DATE, 
         I_MODIFIED_DATE)
      VALUES 
-        (?, ?, ?, ?, ?, ?, ?)`;
+        (?, ?, ?, ?, ?, ?)`;
 
      const sql_inform_update = 
      `UPDATE inform SET 
         I_TITLE = ?, 
         I_PROFILE_IMAGE = ?,
-        I_IMAGE = ?,
         I_CONTENT = ?,
         I_MODIFIED_DATE = ?
      WHERE ID = ?;`;

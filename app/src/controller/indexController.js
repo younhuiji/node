@@ -5,8 +5,7 @@ const User = require("../modles/User");
 const get = {
     index: async (req, res) => {
         const results =  await index.index();
-        console.log('conntroller : ' + results);
-        return res.send(results);
+        return res.status(200).send(results);
     }   
 };
 

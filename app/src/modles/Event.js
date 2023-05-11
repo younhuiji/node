@@ -82,24 +82,24 @@ module.exports = {
           );
 
         // 게시물 이미지 저장
-        const boardImagePaths = await Promise.all(
-            req.E_IMAGE.map((image) =>
-              saveImage(
-                {
-                  name: image.name,
-                  data: image.data,
-                  directory: boardDirPath,
-                }
-              )
-            )
-          );
+        // const boardImagePaths = await Promise.all(
+        //     req.E_IMAGE.map((image) =>
+        //       saveImage(
+        //         {
+        //           name: image.name,
+        //           data: image.data,
+        //           directory: boardDirPath,
+        //         }
+        //       )
+        //     )
+        //   );
 
         
         await new Promise((resolve, reject) => {
         connection.query(sql.sql_event_create, [
                 req.E_TITLE,
                 profileImagePath,
-                JSON.stringify(boardImagePaths),
+                // JSON.stringify(boardImagePaths),
                 req.E_CONTENT,
                 req.E_WRITER,
                 new Date(),
@@ -140,21 +140,21 @@ module.exports = {
         });
       
         // 게시물 이미지 저장
-        const newBoardImagePaths = await Promise.all(
-        data.E_IMAGE.map((image) =>
-            saveImage({
-              name: image.name,
-              data: image.data,
-              directory: boardDirPath,
-            })
-          )
-        );
+        // const newBoardImagePaths = await Promise.all(
+        // data.E_IMAGE.map((image) =>
+        //     saveImage({
+        //       name: image.name,
+        //       data: image.data,
+        //       directory: boardDirPath,
+        //     })
+        //   )
+        // );
       
         await new Promise((resolve, reject) => {
           connection.query(sql.sql_event_update, [
             data.E_TITLE,
             profileImagePath,
-            JSON.stringify(newBoardImagePaths),
+            // JSON.stringify(newBoardImagePaths),
             data.E_CONTENT,
             new Date(),
             eventId,

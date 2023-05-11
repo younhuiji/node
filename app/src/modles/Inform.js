@@ -84,23 +84,23 @@ module.exports = {
           );
       
           // 게시물 이미지 저장
-          const boardImagePaths = await Promise.all(
-            req.I_IMAGE.map((image) =>
-              saveImage(
-                {
-                  name: image.name,
-                  data: image.data,
-                  directory: boardDirPath,
-                }
-              )
-            )
-          );
+          // const boardImagePaths = await Promise.all(
+          //   req.I_IMAGE.map((image) =>
+          //     saveImage(
+          //       {
+          //         name: image.name,
+          //         data: image.data,
+          //         directory: boardDirPath,
+          //       }
+          //     )
+          //   )
+          // );
       
           await new Promise((resolve, reject) => {
             connection.query(sql.sql_inform_create, [
               req.I_TITLE,
               profileImagePath,
-              JSON.stringify(boardImagePaths),
+              // JSON.stringify(boardImagePaths),
               req.I_CONTENT,
               req.I_WRITER,
               new Date(),
@@ -145,22 +145,22 @@ module.exports = {
           directory: boardDirPath,
         });
       
-        // 게시물 이미지 저장
-        const newBoardImagePaths = await Promise.all(
-        data.I_IMAGE.map((image) =>
-            saveImage({
-              name: image.name,
-              data: image.data,
-              directory: boardDirPath,
-            })
-          )
-        );
+        // // 게시물 이미지 저장
+        // const newBoardImagePaths = await Promise.all(
+        // data.I_IMAGE.map((image) =>
+        //     saveImage({
+        //       name: image.name,
+        //       data: image.data,
+        //       directory: boardDirPath,
+        //     })
+        //   )
+        // );
       
         await new Promise((resolve, reject) => {
           connection.query(sql.sql_inform_update, [
             data.I_TITLE,
             profileImagePath,
-            JSON.stringify(newBoardImagePaths),
+            // JSON.stringify(newBoardImagePaths),
             data.I_CONTENT,
             new Date(),
             informId,

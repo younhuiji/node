@@ -63,18 +63,18 @@ module.exports = {
                 }
                 );
             
-                // 게시물 이미지 저장
-                const hospitalImagePaths = await Promise.all(
-                req.H_BOARD_IMAGE.map((image) =>
-                    saveImage(
-                        {
-                            name: image.name,
-                            data: image.data,
-                            directory: hospitalDirPath,
-                        }
-                    )
-                )
-            );
+            //     // 게시물 이미지 저장
+            //     const hospitalImagePaths = await Promise.all(
+            //     req.H_BOARD_IMAGE.map((image) =>
+            //         saveImage(
+            //             {
+            //                 name: image.name,
+            //                 data: image.data,
+            //                 directory: hospitalDirPath,
+            //             }
+            //         )
+            //     )
+            // );
 
             await new Promise((resolve, reject) => {
                 connection.query(sql.sql_hospital_create,[
@@ -93,7 +93,7 @@ module.exports = {
                     req.H_NAVER_LINK,
                     req.H_RESERVATION_LINK,
                     req.H_CONTENT,
-                    JSON.stringify(hospitalImagePaths), // 배열을 문자열로 변환하여 저장
+                    // JSON.stringify(hospitalImagePaths), // 배열을 문자열로 변환하여 저장
                     req.H_LUNCH_START_TIME,
                     req.H_LUNCH_END_TIME,
                     req.H_MON_START_TIME,
@@ -179,9 +179,9 @@ module.exports = {
             console.log('data : ' + id);
 
             // 게시물 디렉토리 생성
-            const hospitalDirName = `hospital_${new Date().getTime()}`;
+            const hospitalDirName = `hospital_${uuidv4()}`;
             const hospitalDirPath = path.join(__dirname, '..', 'public', 'images', 'hospital', hospitalDirName);
-            fs.mkdirSync(boardDirPath);
+            fs.mkdirSync(hospitalDirPath);
 
             // 프로필 이미지 저장
             const profileImagePath = await saveImage({
@@ -191,15 +191,15 @@ module.exports = {
             });
             
             // 게시물 이미지 저장
-            const newBoardImagePaths = await Promise.all(
-            data.H_BOARD_IMAGE.map((image) =>
-                    saveImage({
-                        name: image.name,
-                        data: image.data,
-                        directory: hospitalDirPath,
-                    })
-                )
-            );
+            // const newBoardImagePaths = await Promise.all(
+            // data.H_BOARD_IMAGE.map((image) =>
+            //         saveImage({
+            //             name: image.name,
+            //             data: image.data,
+            //             directory: hospitalDirPath,
+            //         })
+            //     )
+            // );
 
             await new Promise((resolve, reject) => {
                 connection.query(sql.sql_hospital_update, [
@@ -218,7 +218,7 @@ module.exports = {
                     data.H_NAVER_LINK,
                     data.H_RESERVATION_LINK,
                     data.H_CONTENT,
-                    JSON.stringify(newBoardImagePaths),
+                    // JSON.stringify(newBoardImagePaths),
                     data.H_LUNCH_START_TIME,
                     data.H_LUNCH_END_TIME,
                     data.H_MON_START_TIME,
@@ -246,7 +246,6 @@ module.exports = {
                     }
                 });
             });
-            res.status(200).send('creating hospital directory')
         } catch(error){
             // 예외가 발생했을 때 실행할 코드
             console.error(error);
