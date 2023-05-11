@@ -7,7 +7,3 @@
 <local dev 실행방법1>
 > cd .\app\bin\
 > node www.js
-
-<local dev 실행방법2>
-> cd .\app\
-> nodemon www.js

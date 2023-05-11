@@ -32,7 +32,7 @@ module.exports = {
             event: results_event
           };
       
-            console.log('응답 데이터:', results);
+            // console.log('응답 데이터:', results);
             return (results);
       
         } catch (error) {
